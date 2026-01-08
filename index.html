@@ -1,0 +1,2267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Akash Periyasamy - Cybersecurity Instructor | Ajak Cyber Academy
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --bg-dark: #0a0a0f;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --bg-card-hover: rgba(255, 255, 255, 0.06);
+        --border-color: rgba(255, 255, 255, 0.08);
+        --border-hover: rgba(255, 255, 255, 0.15);
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.5);
+        --accent-cyan: #00d4ff;
+        --accent-purple: #a855f7;
+        --accent-pink: #ec4899;
+        --accent-green: #10b981;
+        --glow-cyan: rgba(0, 212, 255, 0.3);
+        --glow-purple: rgba(168, 85, 247, 0.3);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: var(--bg-dark);
+        color: var(--text-primary);
+        min-height: 100vh;
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg-dark);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      /* Animated Background */
+      .bg-container {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .gradient-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.4;
+        animation: float 20s ease-in-out infinite;
+      }
+
+      .orb-1 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          var(--accent-cyan),
+          transparent 70%
+        );
+        top: -20%;
+        left: -10%;
+        animation-delay: 0s;
+      }
+
+      .orb-2 {
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          var(--accent-purple),
+          transparent 70%
+        );
+        top: 40%;
+        right: -15%;
+        animation-delay: -7s;
+      }
+
+      .orb-3 {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          var(--accent-pink),
+          transparent 70%
+        );
+        bottom: -10%;
+        left: 30%;
+        animation-delay: -14s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        25% {
+          transform: translate(30px, -40px) scale(1.05);
+        }
+        50% {
+          transform: translate(-20px, 20px) scale(0.95);
+        }
+        75% {
+          transform: translate(40px, 30px) scale(1.02);
+        }
+      }
+
+      /* Grid Pattern Overlay */
+      .grid-pattern {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.02) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        background-size: 60px 60px;
+        mask-image: radial-gradient(
+          ellipse at center,
+          black 30%,
+          transparent 70%
+        );
+      }
+
+      /* Noise Texture */
+      .noise {
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        opacity: 0.03;
+        pointer-events: none;
+      }
+
+      /* Main Container */
+      .main-container {
+        position: relative;
+        z-index: 1;
+        /* max-width: 1400px; */
+        margin: 0 auto;
+        padding: 2rem 1.5rem 4rem;
+        width: 95vw;
+      }
+
+      /* Header Section */
+      .header {
+        text-align: center;
+        padding: 4rem 0;
+        margin-bottom: 3rem;
+      }
+
+      .header-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 100px;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+        backdrop-filter: blur(10px);
+      }
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--accent-green);
+        border-radius: 50%;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(1.2);
+        }
+      }
+
+      .header-title {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          #fff 0%,
+          rgba(255, 255, 255, 0.7) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .header-subtitle {
+        font-size: clamp(1rem, 2.5vw, 1.25rem);
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto 2rem;
+      }
+
+      .header-tags {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+      }
+
+      .tag {
+        padding: 0.5rem 1rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 100px;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        font-family: "JetBrains Mono", monospace;
+        transition: all 0.3s ease;
+      }
+
+      .tag:hover {
+        border-color: var(--accent-cyan);
+        color: var(--accent-cyan);
+        box-shadow: 0 0 20px var(--glow-cyan);
+      }
+
+      /* Bento Grid */
+      .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1.25rem;
+        grid-auto-rows: minmax(80px, auto);
+      }
+
+      /* Card Base */
+      .card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 24px;
+        padding: 1.5rem;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-style: preserve-3d;
+        perspective: 1000px;
+      }
+
+      /* .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 24px;
+        padding: 1px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1),
+          transparent,
+          rgba(255, 255, 255, 0.05)
+        );
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      } */
+
+      .card:hover {
+        background: var(--bg-card-hover);
+        border-color: var(--border-hover);
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 60px var(--glow-cyan);
+      }
+
+      .card:hover::before,
+      .card:hover::after {
+        opacity: 1;
+      }
+
+      /* Card Glow Effect */
+      .card-glow {
+        position: absolute;
+        inset: 0;
+        border-radius: 24px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+      }
+
+      .card:hover .card-glow {
+        opacity: 1;
+      }
+
+      /* Card Sizes - Base (Mobile First) */
+      .card-lg {
+        grid-column: span 12;
+        grid-row: span 4;
+      }
+      .card-md {
+        grid-column: span 12;
+        grid-row: span 3;
+      }
+      .card-sm {
+        grid-column: span 12;
+        grid-row: span 2;
+      }
+      .card-tall {
+        grid-column: span 12;
+        grid-row: span 4;
+      }
+      .card-wide {
+        grid-column: span 12;
+        grid-row: span 2;
+      }
+      .card-full {
+        grid-column: span 12;
+        grid-row: span 2;
+      }
+
+      /* Card Content */
+      .card-icon {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          var(--accent-cyan),
+          var(--accent-purple)
+        );
+        border-radius: 14px;
+        margin-bottom: 1.25rem;
+        font-size: 1.25rem;
+        position: relative;
+      }
+
+      .card-icon::after {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border-radius: 16px;
+        background: linear-gradient(
+          135deg,
+          var(--accent-cyan),
+          var(--accent-purple)
+        );
+        opacity: 0.3;
+        filter: blur(8px);
+        z-index: -1;
+      }
+
+      .card-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--accent-cyan);
+        margin-bottom: 0.75rem;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .card-title {
+        font-size: clamp(1.25rem, 3vw, 1.75rem);
+        font-weight: 700;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+
+      .card-description {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
+
+      /* Stats Grid - Base */
+      .stats-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        height: 100%;
+      }
+
+      .stat-box {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .stat-box:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--accent-cyan);
+        transform: scale(1.02);
+      }
+
+      .stat-value {
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 900;
+        background: linear-gradient(135deg, #fff, var(--accent-cyan));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+
+      /* Skill Tags */
+      .skills-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
+      }
+
+      .skill-pill {
+        padding: 0.6rem 1.25rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-color);
+        border-radius: 100px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        transition: all 0.3s ease;
+        cursor: default;
+      }
+
+      .skill-pill:hover {
+        background: rgba(0, 212, 255, 0.1);
+        border-color: var(--accent-cyan);
+        color: var(--accent-cyan);
+        transform: translateY(-2px);
+      }
+
+      /* Course Items */
+      .course-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
+      }
+
+      .course-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 1rem 1.25rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border-color);
+        border-radius: 14px;
+        transition: all 0.3s ease;
+      }
+
+      .course-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--border-hover);
+        transform: translateX(4px);
+      }
+
+      .course-name {
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+
+      .course-rating {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        color: var(--accent-green);
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+
+      /* Certification Badges */
+      .cert-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
+      }
+
+      .cert-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem 1.25rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border-color);
+        border-radius: 14px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+      }
+
+      .cert-badge:hover {
+        background: rgba(168, 85, 247, 0.1);
+        border-color: var(--accent-purple);
+        transform: scale(1.02);
+      }
+
+      .cert-icon {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          var(--accent-purple),
+          var(--accent-pink)
+        );
+        border-radius: 10px;
+        font-size: 1rem;
+      }
+
+      /* Achievement Grid - Base */
+      .achievement-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
+      }
+
+      .achievement-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border-color);
+        border-radius: 14px;
+        transition: all 0.3s ease;
+      }
+
+      .achievement-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+        transform: translateX(4px);
+      }
+
+      .achievement-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        flex-shrink: 0;
+      }
+
+      .achievement-text {
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      /* Company Logos - Base */
+      .company-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
+      }
+
+      .company-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 1.25rem 1rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border-color);
+        border-radius: 14px;
+        transition: all 0.3s ease;
+      }
+
+      .company-box:hover {
+        background: rgba(236, 72, 153, 0.1);
+        border-color: var(--accent-pink);
+        transform: translateY(-4px);
+      }
+
+      .company-box i {
+        font-size: 1.5rem;
+        color: var(--accent-pink);
+      }
+
+      .company-name {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      /* Testimonial */
+      .testimonial-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .testimonial {
+        padding: 1.25rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border-color);
+        border-left: 3px solid var(--accent-cyan);
+        border-radius: 14px;
+      }
+
+      .testimonial-text {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        font-style: italic;
+        line-height: 1.7;
+        margin-bottom: 1rem;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .author-avatar {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(
+          135deg,
+          var(--accent-cyan),
+          var(--accent-purple)
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.85rem;
+      }
+
+      .author-info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .author-name {
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .author-role {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      /* Info List */
+      .info-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 0.9rem;
+      }
+
+      .info-item:last-child {
+        border-bottom: none;
+      }
+
+      .info-item i {
+        color: var(--accent-cyan);
+        width: 20px;
+      }
+
+      /* CTA Section */
+      .cta-content {
+        text-align: center;
+        padding: 1rem 0;
+      }
+
+      .cta-title {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        font-weight: 800;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #fff, var(--accent-cyan));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .cta-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.875rem 1.75rem;
+        border-radius: 100px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--accent-cyan),
+          var(--accent-purple)
+        );
+        color: #fff;
+        box-shadow: 0 4px 20px var(--glow-cyan);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px var(--glow-cyan);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--accent-cyan);
+      }
+
+      /* Footer */
+      .footer {
+        margin-top: 4rem;
+        padding: 3rem 2rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 24px;
+        text-align: center;
+      }
+
+      .footer-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.25rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-color);
+        border-radius: 100px;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+      }
+
+      .footer-link:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: var(--accent-cyan);
+        color: var(--accent-cyan);
+        transform: translateY(-2px);
+      }
+
+      .footer-copyright {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+
+      /* Animations */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Feature Box */
+      .feature-box {
+        padding: 1.25rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border-color);
+        border-radius: 14px;
+        margin-top: 1.25rem;
+      }
+
+      .feature-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .feature-text {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+
+      .meta-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+
+      .meta-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.4rem 0.75rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-color);
+        border-radius: 100px;
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+      }
+
+      /* Shimmer Effect */
+      @keyframes shimmer {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      .card:hover .card-icon {
+        animation: shimmer 2s linear infinite;
+        background-size: 200% 100%;
+      }
+
+      /* Card Sizes - Base (Mobile First) */
+      .card-lg {
+        grid-column: span 12;
+        min-height: 400px;
+      }
+      .card-md {
+        grid-column: span 12;
+        min-height: 320px;
+      }
+      .card-sm {
+        grid-column: span 12;
+        min-height: 240px;
+      }
+      .card-tall {
+        grid-column: span 12;
+        min-height: 400px;
+      }
+      .card-wide {
+        grid-column: span 12;
+        min-height: 280px;
+      }
+      .card-full {
+        grid-column: span 12;
+        min-height: 240px;
+      }
+      /* ============================================ */
+      /* RESPONSIVE BREAKPOINTS - 8 BREAKPOINTS SYSTEM */
+      /* ============================================ */
+
+      /* Breakpoint 1: Extra Small Mobile (320px+) */
+      @media (min-width: 320px) {
+        .main-container {
+          padding: 1.5rem 1rem 3rem;
+        }
+        .header-title {
+          font-size: 2rem;
+        }
+        .bento-grid {
+          gap: 1rem;
+        }
+        .header-tags {
+          gap: 0.5rem;
+        }
+        .tag {
+          font-size: 0.75rem;
+          padding: 0.4rem 0.8rem;
+        }
+        .btn {
+          padding: 0.75rem 1.5rem;
+          font-size: 0.85rem;
+        }
+        .cta-buttons {
+          flex-direction: column;
+          width: 100%;
+        }
+        .cta-buttons .btn {
+          width: 100%;
+        }
+        .footer{
+            grid-column: span 12;
+            margin-top: 0 !important;
+        }
+      }
+
+      /* Breakpoint 2: Small Mobile (480px+) */
+      @media (min-width: 480px) {
+        .main-container {
+          padding: 2rem 1.25rem 3.5rem;
+        }
+        .header-title {
+          font-size: 2.5rem;
+        }
+        .bento-grid {
+          gap: 1.125rem;
+        }
+        .stats-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .card {
+          padding: 1.75rem;
+        }
+        .header-tags {
+          gap: 0.6rem;
+        }
+        .tag {
+          font-size: 0.8rem;
+          padding: 0.45rem 0.9rem;
+        }
+        .achievement-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .course-item {
+          padding: 1.125rem 1.5rem;
+        }
+        .cert-badge {
+          padding: 1.125rem 1.5rem;
+        }
+      }
+
+      /* Breakpoint 3: Medium Mobile (640px+) */
+      @media (min-width: 640px) {
+        .main-container {
+          padding: 2.25rem 1.5rem 4rem;
+        }
+        .header-title {
+          font-size: 3rem;
+        }
+        .bento-grid {
+          gap: 1.25rem;
+        }
+        .card-md {
+          grid-column: span 6;
+        }
+        .card-sm {
+          grid-column: span 6;
+        }
+        .company-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .header-tags {
+          gap: 0.75rem;
+        }
+        .tag {
+          font-size: 0.85rem;
+          padding: 0.5rem 1rem;
+        }
+        .btn {
+          padding: 0.8rem 1.6rem;
+          font-size: 0.875rem;
+        }
+        .cta-buttons {
+          flex-direction: row;
+        }
+        .cta-buttons .btn {
+          width: auto;
+        }
+        .footer-links {
+          gap: 1.25rem;
+        }
+      }
+
+      /* Breakpoint 4: Large Mobile/Small Tablet (768px+) */
+      @media (min-width: 768px) {
+        .main-container {
+          padding: 3rem 2rem 5rem;
+        }
+        .header-title {
+          font-size: 3.5rem;
+        }
+        .bento-grid {
+          gap: 1.5rem;
+        }
+        .card {
+          padding: 2rem;
+        }
+        .card-lg {
+          grid-column: span 8;
+          grid-row: span 4;
+        }
+        .card-md {
+          grid-column: span 6;
+          grid-row: span 3;
+        }
+        .card-sm {
+          grid-column: span 4;
+          grid-row: span 2;
+        }
+        .card-tall {
+          grid-column: span 4;
+          grid-row: span 4;
+        }
+        .card-wide {
+          grid-column: span 8;
+          grid-row: span 2;
+        }
+        .card-full {
+          grid-column: span 12;
+          grid-row: span 2;
+        }
+        .company-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .achievement-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .btn {
+          padding: 0.875rem 1.75rem;
+          font-size: 0.9rem;
+        }
+        .skill-pill {
+          padding: 0.65rem 1.3rem;
+          font-size: 0.875rem;
+        }
+        .stat-box {
+          padding: 1.5rem;
+        }
+        .stats_card{
+                grid-column: span 5 !important;
+        }
+        .testimonials_card{
+        grid-column: span 7 !important;
+         height: max-content !important;
+        }
+        .Community_card{
+        /* grid-column: span 1 !important; */
+        height: max-content !important;
+        }
+        .footer{
+        grid-column: span 7;
+        
+        }
+      }
+
+      /* Breakpoint 5: Tablet (1024px+) */
+      @media (min-width: 1024px) {
+        .main-container {
+          padding: 3.5rem 2.5rem 5rem;
+          max-width: 1200px;
+        }
+        .header-title {
+          font-size: 4rem;
+        }
+        .header-subtitle {
+          font-size: 1.15rem;
+        }
+        .bento-grid {
+          gap: 1.75rem;
+        }
+        .card {
+          padding: 2.25rem;
+        }
+        .card-icon {
+          width: 52px;
+          height: 52px;
+          font-size: 1.35rem;
+        }
+        .card-title {
+          font-size: 1.65rem;
+        }
+        .btn {
+          padding: 0.9rem 1.85rem;
+          font-size: 0.95rem;
+        }
+        .skill-pill {
+          padding: 0.7rem 1.35rem;
+          font-size: 0.9rem;
+        }
+        .course-item {
+          padding: 1.25rem 1.5rem;
+        }
+        .cert-badge {
+          padding: 1.25rem 1.5rem;
+        }
+        .testimonial {
+          padding: 1.5rem;
+        }
+        .feature-box {
+          padding: 1.5rem;
+        }
+      }
+
+      /* Breakpoint 6: Small Desktop (1280px+) */
+      @media (min-width: 1280px) {
+        .main-container {
+          padding: 4rem 3rem 6rem;
+          max-width: 1300px;
+        }
+        .header {
+          padding: 5rem 0;
+        }
+        .header-title {
+          font-size: 4.5rem;
+        }
+        .header-subtitle {
+          font-size: 1.2rem;
+        }
+        .bento-grid {
+          gap: 2rem;
+        }
+        .card {
+          padding: 2.5rem;
+        }
+        .card-icon {
+          width: 56px;
+          height: 56px;
+          font-size: 1.5rem;
+        }
+        .card-title {
+          font-size: 1.75rem;
+        }
+        .stat-value {
+          font-size: 3rem;
+        }
+        .btn {
+          padding: 1rem 2rem;
+          font-size: 1rem;
+        }
+        .skill-pill {
+          padding: 0.75rem 1.4rem;
+          font-size: 0.95rem;
+        }
+        .course-item {
+          padding: 1.35rem 1.75rem;
+          font-size: 0.95rem;
+        }
+        .cert-badge {
+          padding: 1.35rem 1.75rem;
+          font-size: 0.95rem;
+        }
+        .stat-box {
+          padding: 1.75rem;
+        }
+      }
+
+      /* Breakpoint 7: Medium Desktop (1440px+) */
+      @media (min-width: 1440px) {
+        .main-container {
+          padding: 4rem 3rem 6rem;
+          max-width: 1400px;
+        }
+        .header-title {
+          font-size: 5rem;
+        }
+        .header-subtitle {
+          font-size: 1.25rem;
+          max-width: 700px;
+        }
+        .bento-grid {
+          gap: 2rem;
+        }
+        .card {
+          padding: 2.5rem;
+        }
+        .card-description {
+          font-size: 1rem;
+        }
+        .skill-pill {
+          padding: 0.8rem 1.45rem;
+          font-size: 1rem;
+        }
+        .course-item {
+          padding: 1.4rem 1.85rem;
+          font-size: 1rem;
+        }
+        .cert-badge {
+          padding: 1.4rem 1.85rem;
+          font-size: 1rem;
+        }
+        .testimonial {
+          padding: 1.75rem;
+        }
+        .testimonial-text {
+          font-size: 0.95rem;
+        }
+        .feature-box {
+          padding: 1.75rem;
+        }
+        .feature-text {
+          font-size: 0.95rem;
+        }
+      }
+
+      /* Breakpoint 8: Large Desktop (1920px+) */
+      @media (min-width: 1920px) {
+        .main-container {
+          padding: 5rem 4rem 7rem;
+          max-width: 1600px;
+        }
+        .header {
+          padding: 6rem 0;
+        }
+        .header-title {
+          font-size: 5.5rem;
+        }
+        .header-subtitle {
+          font-size: 1.35rem;
+          max-width: 800px;
+        }
+        .bento-grid {
+          gap: 2.25rem;
+        }
+        .card {
+          padding: 3rem;
+        }
+        .card-icon {
+          width: 60px;
+          height: 60px;
+          font-size: 1.65rem;
+        }
+        .card-title {
+          font-size: 2rem;
+        }
+        .card-description {
+          font-size: 1.05rem;
+          line-height: 1.8;
+        }
+        .stat-value {
+          font-size: 3.5rem;
+        }
+        .btn {
+          padding: 1.1rem 2.2rem;
+          font-size: 1.05rem;
+        }
+        .skill-pill {
+          padding: 0.85rem 1.5rem;
+          font-size: 1.05rem;
+        }
+        .course-item {
+          padding: 1.5rem 2rem;
+          font-size: 1.05rem;
+        }
+        .cert-badge {
+          padding: 1.5rem 2rem;
+          font-size: 1.05rem;
+        }
+        .stat-box {
+          padding: 2rem;
+        }
+        .testimonial {
+          padding: 2rem;
+        }
+        .testimonial-text {
+          font-size: 1rem;
+        }
+        .feature-box {
+          padding: 2rem;
+        }
+        .feature-text {
+          font-size: 1rem;
+        }
+        .footer {
+          padding: 3.5rem 2.5rem;
+        }
+      }
+      /* =========================================================
+   AKASH PERIYASAMY – RESPONSIVE BENTO UI (FIXED)
+   Author: Production Ready CSS
+   ========================================================= */
+
+      /* ===================== ROOT ===================== */
+      :root {
+        --bg-dark: #0a0a0f;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --bg-card-hover: rgba(255, 255, 255, 0.06);
+        --border-color: rgba(255, 255, 255, 0.08);
+        --border-hover: rgba(255, 255, 255, 0.15);
+
+        --text-primary: #fff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-muted: rgba(255, 255, 255, 0.5);
+
+        --accent-cyan: #00d4ff;
+        --accent-purple: #a855f7;
+        --accent-pink: #ec4899;
+        --accent-green: #10b981;
+
+        --glow-cyan: rgba(0, 212, 255, 0.3);
+        --glow-purple: rgba(168, 85, 247, 0.3);
+      }
+
+      /* ===================== RESET ===================== */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        background: var(--bg-dark);
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
+
+      /* ===================== BACKGROUND ===================== */
+      .bg-container {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .gradient-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.4;
+        animation: float 20s ease-in-out infinite;
+      }
+
+      .orb-1 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          var(--accent-cyan),
+          transparent 70%
+        );
+        top: -20%;
+        left: -10%;
+      }
+      .orb-2 {
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          var(--accent-purple),
+          transparent 70%
+        );
+        top: 40%;
+        right: -15%;
+      }
+      .orb-3 {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          var(--accent-pink),
+          transparent 70%
+        );
+        bottom: -10%;
+        left: 30%;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(40px, -30px);
+        }
+      }
+
+      .grid-pattern {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            rgba(255, 255, 255, 0.02) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        background-size: 60px 60px;
+      }
+
+      .noise {
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        opacity: 0.03;
+      }
+
+      /* ===================== LAYOUT ===================== */
+      .main-container {
+        position: relative;
+        z-index: 1;
+        max-width: 1400px;
+        margin: auto;
+        padding: 2rem 1rem 4rem;
+      }
+
+      /* ===================== HEADER ===================== */
+      .header {
+        text-align: center;
+        padding: 4rem 0;
+      }
+
+      .header-badge {
+        display: inline-flex;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 999px;
+        font-size: 0.85rem;
+      }
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent-green);
+      }
+
+      .header-title {
+        font-size: clamp(2.2rem, 7vw, 5rem);
+        font-weight: 900;
+        margin: 1.5rem 0;
+      }
+
+      .header-subtitle {
+        max-width: 650px;
+        margin: auto;
+        color: var(--text-secondary);
+      }
+
+      .header-tags {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 2rem;
+      }
+
+      .tag {
+        padding: 0.45rem 1rem;
+        border-radius: 999px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        font-size: 0.8rem;
+      }
+
+      /* ===================== GRID ===================== */
+      .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1.25rem;
+      }
+
+      /* ===================== CARDS ===================== */
+      .card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 24px;
+        padding: 1.5rem;
+        position: relative;
+        transition: 0.3s ease;
+      }
+
+      .card:hover {
+        background: var(--bg-card-hover);
+        border-color: var(--border-hover);
+      }
+
+      /* SAFE CARD SIZES */
+      .card-lg,
+      .card-md,
+      .card-sm,
+      .card-tall,
+      .card-wide,
+      .card-full {
+        grid-column: span 12;
+        height: auto;
+      }
+
+      .card-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        background: linear-gradient(
+          135deg,
+          var(--accent-cyan),
+          var(--accent-purple)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+
+      /* ===================== CONTENT ===================== */
+      .card-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: var(--accent-cyan);
+        margin-bottom: 0.5rem;
+      }
+
+      .card-title {
+        font-size: 1.4rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .card-description {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+      }
+
+      /* ===================== STATS ===================== */
+      .stats-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1rem;
+      }
+
+      .stat-box {
+        padding: 1.25rem;
+        border-radius: 16px;
+        border: 1px solid var(--border-color);
+        text-align: center;
+      }
+
+      .stat-value {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 900;
+      }
+
+      .stat-label {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+
+      /* ===================== BUTTONS ===================== */
+      .btn {
+        border-radius: 999px;
+        padding: 0.8rem 1.6rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--accent-cyan),
+          var(--accent-purple)
+        );
+        color: #fff;
+      }
+
+      .btn-secondary {
+        background: transparent;
+        border: 1px solid var(--border-color);
+        color: #fff;
+      }
+
+      /* ===================== CTA ===================== */
+      .cta-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      /* ===================== FOOTER ===================== */
+      .footer {
+        margin-top: 4rem;
+        padding: 3rem 2rem;
+        border-radius: 24px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        text-align: center;
+      }
+
+      /* ===================== ANIMATIONS ===================== */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition: 0.6s ease;
+      }
+
+      /* ===================== RESPONSIVE ===================== */
+      @media (min-width: 768px) {
+        .card-lg {
+          grid-column: span 8;
+        }
+        .card-md {
+          grid-column: span 6;
+        }
+        .card-sm {
+          grid-column: span 4;
+        }
+        .card-wide {
+          grid-column: span 8;
+        }
+        .card-tall {
+          grid-column: span 4;
+        }
+        .Skills_Card{
+            grid-column: span 7 !important;
+        }
+      }
+
+      @media (min-width: 1280px) {
+        .card-lg {
+          grid-column: span 7;
+        }
+        .card-md {
+          grid-column: span 5;
+        }
+        .card-sm {
+          grid-column: span 3;
+        }
+      }
+
+      /* ===================== MOBILE HOVER FIX ===================== */
+      @media (hover: none) and (pointer: coarse) {
+        .card:hover {
+          transform: none;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Animated Background -->
+    <div class="bg-container">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
+      <div class="grid-pattern"></div>
+      <div class="noise"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-container">
+      <!-- Header -->
+      <header class="header fade-in">
+        <div class="header-badge">
+          <span class="status-dot"></span>
+          Cybersecurity Researcher
+        </div>
+        <h1 class="header-title">AKASH PERIYASAMY</h1>
+        <p class="header-subtitle">
+          Founder of Ajak Cyber Academy. Penetration Tester, Digital Forensics
+          Consultant. Building the next generation of Security Engineers.
+        </p>
+        <div class="header-tags">
+          <span class="tag">VAPT</span>
+          <span class="tag">Bug Bounty</span>
+          <span class="tag">Digital Forensics</span>
+          <span class="tag">Cybersecurity Instructor </span>
+        </div>
+      </header>
+
+      <!-- Bento Grid -->
+      <div class="bento-grid">
+        <!-- Hero Card -->
+        <div class="card card-lg fade-in">
+          <div
+            class="card-glow"
+            style="
+              background: radial-gradient(
+                circle at 30% 30%,
+                var(--glow-cyan),
+                transparent 60%
+              );
+            "
+          ></div>
+          <div class="card-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <span class="card-label">About Me</span>
+          <h2 class="card-title">Building Real-World Cybersecurity Skills</h2>
+          <p class="card-description">
+           Professional Cybersecurity Instructor with hands-on experience in discovering critical vulnerabilities across 100+ top organizations, including Amazon, NASA, Zoho, IBM, HP, the Singapore Government, and private programs. I transform beginners into industry-ready Penetration Testers through practical, internship-based learning.
+          </p>
+          <div class="feature-box">
+            <div class="feature-title">
+              <i class="fas fa-star" style="color: var(--accent-cyan)"></i>
+              Featured Course: Certified Bug Bounty Hunter Mastery
+            </div>
+            <p class="feature-text">
+              From Reconnaissance to Exploitation - Learn the exact
+              methodologies I used to discover vulnerabilities in top companies
+            </p>
+            <div class="meta-tags">
+              <span class="meta-tag"
+                ><i class="fas fa-users"></i> 1000+ Students</span
+              >
+              <span class="meta-tag"
+                ><i class="fas fa-clock"></i> 40+ Hours</span
+              >
+              <span class="meta-tag"
+                ><i class="fas fa-award"></i> Certificate</span
+              >
+            </div>
+          </div>
+
+          <a
+            class="btn btn-primary"
+            style="margin-top: 1.5rem"
+            href="https://ajakcyberacademy.com/marketplace"
+          >
+            Enroll Now <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Stats Card -->
+        <div class="stats_card card card-tall fade-in">
+          <div
+            class="card-glow"
+            style="
+              background: radial-gradient(
+                circle at 70% 30%,
+                var(--glow-purple),
+                transparent 60%
+              );
+            "
+          ></div>
+          <div class="stats-container">
+            <div class="stat-box">
+              <div class="stat-value">3000+</div>
+              <div class="stat-label">Students Trained</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value">370+</div>
+              <div class="stat-label">Video Tutorials</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value">100+</div>
+              <div class="stat-label">Bugs Discovered</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value">25+</div>
+              <div class="stat-label">Seminars</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Courses Card -->
+        <div class="card card-md fade-in" style="height: max-content;">
+          <div class="card-icon">
+            <i class="fas fa-book-open"></i>
+          </div>
+          <span class="card-label">Courses</span>
+          <h2 class="card-title">Popular Courses</h2>
+          <div class="course-list">
+            <div class="course-item">
+              <span class="course-name"
+                >Web Application Penetration Testing</span
+              >
+              <span class="course-rating"><i class="fas fa-star"></i> 5.0</span>
+            </div>
+            <!-- <div class="course-item">
+                        <span class="course-name">Digital Forensics & Incident Response</span>
+                        <span class="course-rating"><i class="fas fa-star"></i> 4.8</span>
+                    </div> -->
+            <div class="course-item">
+              <span class="course-name">Web Security Reconnaissance</span>
+              <span class="course-rating"><i class="fas fa-star"></i> 5.0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills Card -->
+        <div class="Skills_Card card card-md fade-in">
+          <div class="card-icon">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <span class="card-label">Expertise</span>
+          <h2 class="card-title">Teaching Focus</h2>
+          <div class="skills-wrap">
+            <span class="skill-pill">Bug Bounty</span>
+            <span class="skill-pill">API Testing</span>
+            <span class="skill-pill">Network Security</span>
+            <span class="skill-pill">Active Directory</span>
+            <span class="skill-pill">OSINT</span>
+            <span class="skill-pill">Mobile Forensics</span>
+            <span class="skill-pill">Data Recovery</span>
+            <span class="skill-pill">Malware Analysis</span>
+          </div>
+        </div>
+
+        <!-- Certifications -->
+        <div class="card card-tall fade-in">
+          <div
+            class="card-glow"
+            style="
+              background: radial-gradient(
+                circle at 50% 70%,
+                rgba(168, 85, 247, 0.2),
+                transparent 60%
+              );
+            "
+          ></div>
+          <div class="card-icon">
+            <i class="fas fa-award"></i>
+          </div>
+          <span class="card-label">Credentials</span>
+          <h2 class="card-title">Certifications</h2>
+          <div class="cert-grid">
+            <div class="cert-badge">
+              <div class="cert-icon"><i class="fas fa-shield-halved"></i></div>
+              CEH - Certified Ethical Hacker
+            </div>
+            <div class="cert-badge">
+              <div class="cert-icon"><i class="fas fa-mobile-alt"></i></div>
+              XRY Mobile Forensics Analyst
+            </div>
+            <div class="cert-badge">
+              <div class="cert-icon"><i class="fas fa-graduation-cap"></i></div>
+               CCEP - Red Team Leaders
+           </div>
+            <div class="cert-badge">
+              <div class="cert-icon"><i class="fas fa-lock"></i></div>
+             CAPT - Hackviser 
+            </div>
+          </div>
+          <div class="feature-box">
+            <div class="card-title">Academic</div>
+            <p class="feature-text">
+              MSc Digital Forensics (First Class)<br />Staffordshire University,
+              London
+            </p>
+          </div>
+        </div>
+
+        <!-- Achievements Card -->
+        <div class="card card-wide fade-in">
+          <div class="card-icon">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <span class="card-label">Recognition</span>
+          <h2 class="card-title">Achievements</h2>
+          <div class="achievement-grid">
+            <div class="achievement-item">
+              <div class="achievement-icon">
+                <i class="fas fa-star" style="color: var(--accent-cyan)"></i>
+              </div>
+              <span class="achievement-text">Tesco Top Security Researcher</span>
+            </div>
+            <div class="achievement-item">
+              <div class="achievement-icon">
+                <i
+                  class="fas fa-trophy"
+                  style="color: var(--accent-purple)"
+                ></i>
+              </div>
+              <span class="achievement-text">3rd Place | CTF Competition – SRM</span>
+            </div>
+            <div class="achievement-item">
+              <div class="achievement-icon">
+                <i class="fas fa-users" style="color: var(--accent-pink)"></i>
+              </div>
+              <span class="achievement-text">AICTE Mentor</span>
+            </div>
+            <div class="achievement-item">
+              <div class="achievement-icon">
+                <i class="fas fa-brain" style="color: var(--accent-green)"></i>
+              </div>
+              <span class="achievement-text">Cyberbullying Detection Model - AI/ML</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vulnerabilities Card -->
+        <div class="card card-wide fade-in">
+          <div
+            class="card-glow"
+            style="
+              background: radial-gradient(
+                circle at 80% 50%,
+                rgba(236, 72, 153, 0.2),
+                transparent 60%
+              );
+            "
+          ></div>
+          <div class="card-icon">
+            <i class="fas fa-bug"></i>
+          </div>
+          <span class="card-label">Bug Bounty</span>
+          <h2 class="card-title">Vulnerabilities Discovered</h2>
+          <div class="company-grid">
+            <div class="company-box">
+              <i class="fab fa-amazon"></i>
+              <span class="company-name">Amazon</span>
+            </div>
+            <div class="company-box">
+              <i class="fas fa-rocket"></i>
+              <span class="company-name">NASA</span>
+            </div>
+            <div class="company-box">
+              <i class="fas fa-globe"></i>
+              <span class="company-name">United Nations</span>
+            </div>
+            <div class="company-box">
+<i class="fa-solid fa-cloud"></i>              <span class="company-name">Zoho</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="testimonials_card card card-tall fade-in">
+          <div class="card-icon">
+            <i class="fas fa-comment-dots"></i>
+          </div>
+          <span class="card-label">Reviews</span>
+          <h2 class="card-title">Student Stories</h2>
+          <div class="testimonial-container">
+            <div class="testimonial">
+              <p class="testimonial-text">
+             “I took a 1-on-1 Bug Bounty course with Akash Sir, and within just 3 months, I landed my first bug bounty. His real-world examples and practical approach made all the difference. Highly recommended for anyone serious about bug bounty hunting!”
+              </p>
+              <div class="testimonial-author">
+                <div class="author-avatar">RK</div>
+                <div class="author-info">
+                  <span class="author-name">Mr.Kodeeshwarar</span>
+                  <span class="author-role">Student</span>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial">
+              <p class="testimonial-text">
+I took his web reconnaissance course and really liked the way it was taught. The live website practice made a big difference compared to other courses I’ve taken              </p>
+              <div class="testimonial-author">
+                <div class="author-avatar">SP</div>
+                <div class="author-info">
+                  <span class="author-name">Mr.Sai Raman (Consortium, CTO)</span>
+                  <span class="author-role">Penetration Tester</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Institutions -->
+        <div class="card card-md fade-in">
+          <div class="card-icon">
+            <i class="fas fa-building"></i>
+        </div>
+        <span class="card-label">Training</span>
+        <h2 class="card-title">Institutions Trained</h2>
+          <div class="info-list">
+              <div class="info-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Staffordshire University, London </span>
+              </div>
+            <div class="info-item">
+                <i class="fas fa-check-circle"></i>
+              <span>SRM Institute of Technology</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-check-circle"></i>
+              <span>AICTE (Indian Ministry of Education Affairs)</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Noida International University, Delhi</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Corporate Organizations (HCL, SIDA, NULL, OWASP)</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Thiruthangal Nadar University , Chennai </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Community -->
+        <div class="Community_card card card-md fade-in">
+          <div class="card-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <span class="card-label">Impact</span>
+          <h2 class="card-title">Community Impact</h2>
+          <div class="info-list">
+            <div class="info-item">
+              <i class="fab fa-youtube" style="color: #ff0000"></i>
+              <span>YouTube: 370+ Tutorials</span>
+            </div>
+            <div class="info-item">
+              <i class="fab fa-medium" style="color: #fff"></i>
+              <span>Medium: 75+ Articles</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-microphone-alt"></i>
+              <span>25+ Seminars & Webinars</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-users"></i>
+              <span>3000+ Lives Impacted</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <!-- <div class="card card-full fade-in">
+          <div
+            class="card-glow"
+            style="
+              background: radial-gradient(
+                circle at 50% 50%,
+                var(--glow-cyan),
+                transparent 50%
+              );
+            "
+          ></div>
+          <div class="cta-content">
+            <h2 class="cta-title">
+              Ready to Start Your Cybersecurity Journey?
+            </h2>
+            <p class="card-description">
+              Join thousands of students who have transformed their careers with
+              practical, industry-focused training
+            </p>
+            <div class="cta-buttons">
+              <button class="btn btn-primary">
+                <i class="fas fa-play-circle"></i> View Free Preview
+              </button>
+              <button class="btn btn-secondary">
+                <i class="fas fa-download"></i> Download Syllabus
+              </button>
+            </div>
+          </div>
+        </div> -->
+          <footer class="footer fade-in">
+        <h3 class="footer-title">Connect With Me</h3>
+        <div class="footer-links">
+          <a href="mailto:spsakash7@gmail.com" class="footer-link">
+            <i class="fas fa-envelope"></i> Email
+          </a>
+          <a
+            href="https://www.linkedin.com/in/akash-periyasamy-4535351ab/"
+            target="_blank"
+            class="footer-link"
+          >
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+          <a
+            href="https://www.youtube.com/@ajakcybersecurity23"
+            target="_blank"
+            class="footer-link"
+          >
+            <i class="fab fa-youtube"></i> YouTube
+          </a>
+          <a
+            href="https://medium.com/@Ajakcybersecurity"
+            target="_blank"
+            class="footer-link"
+          >
+            <i class="fab fa-medium"></i> Blog
+          </a>
+        </div>
+        <p class="footer-copyright">
+          &copy; 2026 Ajak Cyber Academy. All rights reserved.
+        </p>
+      </footer>
+      </div>
+
+      <!-- Footer -->
+    
+    </main>
+
+    <script>
+      // Intersection Observer for fade-in animations
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add("visible");
+            }, index * 100);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".fade-in").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Magnetic card effect
+      document.querySelectorAll(".card").forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateX = (y - centerY) / 20;
+          const rotateY = (centerX - x) / 20;
+
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+        });
+
+        card.addEventListener("mouseleave", () => {
+          card.style.transform =
+            "perspective(1000px) rotateX(0) rotateY(0) translateY(0)";
+        });
+      });
+
+      // Animate stats on scroll
+      const animateValue = (element, start, end, duration) => {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          const value = Math.floor(progress * (end - start) + start);
+          element.textContent = value + (element.dataset.suffix || "+");
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          }
+        };
+        window.requestAnimationFrame(step);
+      };
+
+      const statsObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const statValues = entry.target.querySelectorAll(".stat-value");
+              statValues.forEach((stat) => {
+                const text = stat.textContent;
+                const value = parseInt(text.replace(/[^0-9]/g, ""));
+                stat.dataset.suffix = text.includes("+") ? "+" : "";
+                animateValue(stat, 0, value, 2000);
+              });
+              statsObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      document.querySelectorAll(".stats-container").forEach((el) => {
+        statsObserver.observe(el);
+      });
+    </script>
+  </body>
+</html>
