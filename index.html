@@ -485,7 +485,7 @@
         background: rgba(255, 255, 255, 0.03);
         border: 1px solid var(--border-color);
         border-radius: 100px;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         font-weight: 500;
         color: var(--text-secondary);
         transition: all 0.3s ease;
@@ -513,7 +513,7 @@
         justify-content: space-between;
         flex-wrap: wrap;
         gap: 0.5rem;
-        padding: 1rem 1.25rem;
+        padding: 1rem 1rem;
         background: rgba(255, 255, 255, 0.02);
         border: 1px solid var(--border-color);
         border-radius: 14px;
@@ -528,7 +528,7 @@
 
       .course-name {
         font-weight: 500;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
       }
 
       .course-rating {
@@ -1029,6 +1029,13 @@
         .cert-badge {
           padding: 1.125rem 1.5rem;
         }
+     
+      }
+      @media (max-width:640px) {
+
+           .company-grid{
+          grid-template-columns: 1fr 1fr;
+        }
       }
 
       /* Breakpoint 3: Medium Mobile (640px+) */
@@ -1243,6 +1250,9 @@
         }
         .stat-box {
           padding: 1.75rem;
+        }
+        .testimonials_card,.Institutions_card{
+          grid-row: 12 / 13;
         }
       }
 
@@ -1738,6 +1748,8 @@
           box-shadow: none;
         }
       }
+
+      
     </style>
   </head>
   <body>
@@ -1892,10 +1904,11 @@
             <span class="skill-pill">Bug Bounty</span>
             <span class="skill-pill">API Testing</span>
             <span class="skill-pill">Network Security</span>
+                        <span class="skill-pill">OSINT</span>
+                                    <span class="skill-pill">Data Recovery</span>
+
             <span class="skill-pill">Active Directory</span>
-            <span class="skill-pill">OSINT</span>
             <span class="skill-pill">Mobile Forensics</span>
-            <span class="skill-pill">Data Recovery</span>
             <span class="skill-pill">Malware Analysis</span>
           </div>
         </div>
@@ -2053,7 +2066,7 @@ I took his web reconnaissance course and really liked the way it was taught. The
         </div>
 
         <!-- Institutions -->
-        <div class="card card-md fade-in">
+        <div class="Institutions_card card card-md fade-in">
           <div class="card-icon">
             <i class="fas fa-building"></i>
         </div>
@@ -2114,37 +2127,8 @@ I took his web reconnaissance course and really liked the way it was taught. The
           </div>
         </div>
 
-        <!-- CTA -->
-        <!-- <div class="card card-full fade-in">
-          <div
-            class="card-glow"
-            style="
-              background: radial-gradient(
-                circle at 50% 50%,
-                var(--glow-cyan),
-                transparent 50%
-              );
-            "
-          ></div>
-          <div class="cta-content">
-            <h2 class="cta-title">
-              Ready to Start Your Cybersecurity Journey?
-            </h2>
-            <p class="card-description">
-              Join thousands of students who have transformed their careers with
-              practical, industry-focused training
-            </p>
-            <div class="cta-buttons">
-              <button class="btn btn-primary">
-                <i class="fas fa-play-circle"></i> View Free Preview
-              </button>
-              <button class="btn btn-secondary">
-                <i class="fas fa-download"></i> Download Syllabus
-              </button>
-            </div>
-          </div>
-        </div> -->
-          <footer class="footer fade-in">
+        
+    <footer class="footer fade-in">
         <h3 class="footer-title">Connect With Me</h3>
         <div class="footer-links">
           <a href="mailto:spsakash7@gmail.com" class="footer-link">
@@ -2178,8 +2162,6 @@ I took his web reconnaissance course and really liked the way it was taught. The
       </footer>
       </div>
 
-      <!-- Footer -->
-    
     </main>
 
     <script>
